@@ -36,7 +36,7 @@ class _CourtifyAppState extends State<CourtifyApp> {
       ),
       initialRoute: '/signIn',           //isLoggedIn ? '/main' : '/signIn'  (later)
       routes: {
-        '/signIn': (context) => LoginPage(), // Sign-in page
+      //  '/signIn': (context) => LoginPage(), // Sign-in page
       //  '/signUp': (context) => SignUpPage(), // Sign-up page
       //  '/HomePage': (context) => HomePage(), // Main page for logged-in users
 
