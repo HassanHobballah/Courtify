@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 // Import page widgets
 import 'pages/sign_in_page.dart'; 
 import 'pages/sign_up_page.dart';  
@@ -9,7 +10,9 @@ import 'pages/UserProfilePage.dart';
 // import 'PlayingPage.dart' // join a scheduled game 
 // import 'teams_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(CourtifyApp());
 }
 
@@ -33,9 +36,9 @@ class _CourtifyAppState extends State<CourtifyApp> {
       ),
       initialRoute: '/signIn',           //isLoggedIn ? '/main' : '/signIn'  (later)
       routes: {
-        '/signIn': (context) => SignInPage(), // Sign-in page
-        '/signUp': (context) => SignUpPage(), // Sign-up page
-        '/HomePage': (context) => HomePage(), // Main page for logged-in users
+        '/signIn': (context) => LoginPage(), // Sign-in page
+      //  '/signUp': (context) => SignUpPage(), // Sign-up page
+      //  '/HomePage': (context) => HomePage(), // Main page for logged-in users
 
         // '/CourtBooking': (context) => CourtBookingPage(), 
         // '/profile': (context) => ProfilePage(),
