@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "995556587553",
+    "project_id": "system-ff151",
+    "storage_bucket": "system-ff151.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995556587553:android:da1bcc2a604b5cda600b60",
+        "android_client_info": {
+          "package_name": "com.example.courtify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYxLM3x4EhCTV7dBAFqN3ZJdDKD09ISw8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
