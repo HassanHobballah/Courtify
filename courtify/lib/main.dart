@@ -10,7 +10,7 @@ import 'pages/UserProfilePage.dart';
 // import 'PlayingPage.dart' // join a scheduled game 
 // import 'teams_page.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(CourtifyApp());
