@@ -12,7 +12,7 @@ import 'pages/UserProfilePage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  //await Firebase.initializeApp();
   runApp(CourtifyApp());
 }
 
@@ -22,7 +22,7 @@ class CourtifyApp extends StatefulWidget {
 }
 
 class _CourtifyAppState extends State<CourtifyApp> {
-  
+  final Future<FirebaseApp>_fbApp = Firebase.initializeApp();
   // Firebase Auth later
   // bool isLoggedIn = false; 
 
@@ -34,6 +34,23 @@ class _CourtifyAppState extends State<CourtifyApp> {
         primaryColor: Colors.blue,
         hintColor: Colors.green,
       ),
+      home: FutureBuilder(
+        future: _fbApp,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            print ('You have an error! ${snapshot.error.toString()}');
+            return Text('Something went wrong!');
+          } else if (snapshot.hasData) {
+            return MyHomePage(title: 'Courtify App!');
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+              );
+          }
+        },
+        )
+
+      
       initialRoute: '/signIn',           //isLoggedIn ? '/main' : '/signIn'  (later)
       routes: {
       //  '/signIn': (context) => LoginPage(), // Sign-in page
