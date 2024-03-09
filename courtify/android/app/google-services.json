@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1034974394954",
+    "firebase_url": "https://reservation-system-961-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "reservation-system-961",
+    "storage_bucket": "reservation-system-961.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034974394954:android:03f3ee151c183c6c1904b3",
+        "android_client_info": {
+          "package_name": "com.example.courtify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLBclySPvtkOYdsd0Zwyz1pY-jrbqbI_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
