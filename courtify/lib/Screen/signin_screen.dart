@@ -71,6 +71,12 @@ class _SignInScreenState extends State<SignInScreen> {
                               content:
                                   Text("Failed to sign in: ${error.message}"),
                               backgroundColor: Colors.red,
+                                signInSignUpButton(context, false, () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MyHomePage()));
+                        }
                             ),
                           );
                         });
