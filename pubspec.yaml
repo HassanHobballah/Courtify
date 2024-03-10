@@ -22,16 +22,8 @@ dev_dependencies:
 
   flutter_lints: ^2.0.0
 
-# flutter:
-#   # uses-material-design: true
-
-#   assets:
-#   -"C:\Users\yasmi\OneDrive - American University of Beirut\Desktop\cmps\cmps 271\courtify\assets\photo2.jpg"
-#   - assets/photo1.jpg
-
-
 flutter:
-  assets:
-  - assets/images/photo2.jpg
-  - assets/images/photo1.jpg
+  uses-material-design: true
+
+
   
