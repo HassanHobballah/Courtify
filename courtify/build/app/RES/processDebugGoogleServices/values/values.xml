@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">734060512200</string>
+    <string name="google_api_key" translatable="false">AIzaSyAnuwkyx6xxYHINCXzoHtx1laJtLLm1rjs</string>
+    <string name="google_app_id" translatable="false">1:734060512200:android:1b8a8fc43023b19bb6b6fd</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAnuwkyx6xxYHINCXzoHtx1laJtLLm1rjs</string>
+    <string name="google_storage_bucket" translatable="false">courtify-back.appspot.com</string>
+    <string name="project_id" translatable="false">courtify-back</string>
+</resources>
