@@ -7,7 +7,7 @@ class ProfilePage extends StatefulWidget {
   final String age;
   final String phoneNumber;
   final String email;
-  final Function(String, String, String, String, String,String) onUpdateProfile;
+  final Function(String, String, String, String, String, String) onUpdateProfile;
 
   const ProfilePage({
     Key? key,
@@ -25,22 +25,22 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late TextEditingController _firstNameController;
-  late TextEditingController _lastNameController;
+  late TextEditingController _firstNameTextController;
+  late TextEditingController _lastNameTextController;
   late TextEditingController _bioController;
-  late TextEditingController _ageController;
+  late TextEditingController _ageTextController;
   late TextEditingController _phoneNumberController;
-  late TextEditingController _emailController;
+  late TextEditingController _emailTextController;
 
   @override
   void initState() {
     super.initState();
-    _firstNameController = TextEditingController(text: widget.firstName);
-    _lastNameController = TextEditingController(text: widget.lastName);
+    _firstNameTextController = TextEditingController(text: widget.firstName);
+    _lastNameTextController = TextEditingController(text: widget.lastName);
     _bioController = TextEditingController(text: widget.bio);
-    _ageController = TextEditingController(text: widget.age);
+    _ageTextController = TextEditingController(text: widget.age);
     _phoneNumberController = TextEditingController(text: widget.phoneNumber);
-    _emailController = TextEditingController(text: widget.email);
+    _emailTextController = TextEditingController(text: widget.email);
   }
 
   @override
@@ -51,54 +51,56 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextField(
-              controller: _firstNameController,
-              decoration: const InputDecoration(labelText: 'First Name'),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: _lastNameController,
-              decoration: const InputDecoration(labelText: 'Last Name'),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: _bioController,
-              decoration: const InputDecoration(labelText: 'Bio'),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: _ageController,
-              decoration: const InputDecoration(labelText: 'Age'),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: _phoneNumberController,
-              decoration: const InputDecoration(labelText: 'Phone Number'),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                widget.onUpdateProfile(
-                  _firstNameController.text,
-                  _lastNameController.text,
-                  _bioController.text,
-                  _ageController.text,
-                  _phoneNumberController.text,
-                  _emailController.text,
-                );
-                Navigator.pop(context);
-              },
-              child: const Text('Update Profile'),
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextField(
+                controller: _firstNameTextController,
+                decoration: const InputDecoration(labelText: 'First Name'),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _lastNameTextController,
+                decoration: const InputDecoration(labelText: 'Last Name'),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _bioController,
+                decoration: const InputDecoration(labelText: 'Bio'),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _ageTextController,
+                decoration: const InputDecoration(labelText: 'Age'),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _phoneNumberController,
+                decoration: const InputDecoration(labelText: 'Phone Number'),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: _emailTextController,
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  widget.onUpdateProfile(
+                    _firstNameTextController.text,
+                    _lastNameTextController.text,
+                    _bioController.text,
+                    _ageTextController.text,
+                    _phoneNumberController.text,
+                    _emailTextController.text,
+                  );
+                  Navigator.pop(context);
+                },
+                child: const Text('Update Profile'),
+              ),
+            ],
+          ),
         ),
       ),
     );
