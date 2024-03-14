@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                     buttonName: 'Login',
                     
                   ),
-                    onTap : () => Navigator.pushNamed(context,'mainLayout)),
+                    onTap : () => Navigator.pushNamed(context,'mainLayout')),
                     
                   const SizedBox(
                     height: 25,
