@@ -69,7 +69,7 @@ class SignUp extends StatelessWidget {
                    RoundedButton(buttonName: 'Create Account'),
                     SizedBox(height: 25),
                     GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, 'Login'),
+                      onTap: () => Navigator.pushNamed(context, 'mainLayout'),
                       
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
