@@ -1,5 +1,4 @@
 import 'package:court/pallete.dart';
-
 import 'package:flutter/material.dart';
 
 class TextInputField extends StatelessWidget {
@@ -9,11 +8,14 @@ class TextInputField extends StatelessWidget {
     required this.hint,
     required this.inputType,
     required this.inputAction,
+    required this.controller, // Add this line
   });
+
   final IconData icon;
   final String hint;
   final TextInputType inputType;
   final TextInputAction inputAction;
+  final TextEditingController controller; // Add this line
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +31,12 @@ class TextInputField extends StatelessWidget {
         ),
         child: Center(
           child: TextField(
+            controller: controller, // Use the controller here
             decoration: InputDecoration(
               border: InputBorder.none,
               prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                ),
-                child: Icon(
-                  icon,
-                  size: 28,
-                  color: kWhite,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Icon(icon, size: 28, color: kWhite),
               ),
               hintText: hint,
               hintStyle: kBodyText,

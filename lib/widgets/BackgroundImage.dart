@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class BackgroundImage extends StatelessWidget {
   const BackgroundImage({
-    super.key, required this.image,
+    super.key,
+    required this.image,
   });
   final String image;
   @override
@@ -15,7 +16,7 @@ class BackgroundImage extends StatelessWidget {
       ).createShader(rect),
       blendMode: BlendMode.darken,
       child: Container(
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
             image: DecorationImage(
           image: AssetImage(image),
           fit: BoxFit.cover,

@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "734060512200",
+    "project_id": "courtify-back",
+    "storage_bucket": "courtify-back.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734060512200:android:d6ef3d61d4ec905ab6b6fd",
+        "android_client_info": {
+          "package_name": "com.company.Courtify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnuwkyx6xxYHINCXzoHtx1laJtLLm1rjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734060512200:android:a442edeb1e5f36fab6b6fd",
+        "android_client_info": {
+          "package_name": "com.example.court"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnuwkyx6xxYHINCXzoHtx1laJtLLm1rjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734060512200:android:1b8a8fc43023b19bb6b6fd",
+        "android_client_info": {
+          "package_name": "com.example.courtify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnuwkyx6xxYHINCXzoHtx1laJtLLm1rjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

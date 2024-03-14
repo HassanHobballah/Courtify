@@ -1,15 +1,36 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Classpath for the Google services plugin
+        classpath 'com.android.tools.build:gradle:VERSION' // make sure to use the correct Gradle plugin version for your project
+        classpath 'com.google.gms:google-services:4.4.1'
+        // Add other classpaths if necessary
+    }
+}
+
+plugins {
+  // ...
+
+  // Add the dependency for the Google services Gradle plugin
+  id 'com.google.gms.google-services' version '4.4.1' apply false
+  // Apply is set to false, so you can apply it manually in your app-level build.gradle
+}
+
 allprojects {
     repositories {
         google()
         mavenCentral()
+        // Add other repositories if necessary
     }
 }
 
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
+
     project.evaluationDependsOn(':app')
 }
 
