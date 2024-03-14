@@ -53,10 +53,13 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  const RoundedButton(
+                  GestureDetector(
+                 child: const RoundedButton(
                     buttonName: 'Login',
                     
                   ),
+                    onTap : () => Navigator.pushNamed(context,'mainLayout)),
+                    
                   const SizedBox(
                     height: 25,
                   ),
