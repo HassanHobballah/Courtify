@@ -55,6 +55,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const RoundedButton(
                     buttonName: 'Login',
+                    
                   ),
                   const SizedBox(
                     height: 25,
