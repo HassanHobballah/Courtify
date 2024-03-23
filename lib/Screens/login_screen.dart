@@ -1,12 +1,12 @@
-// Ensure this is the correct import path for PasswordInput
-import 'package:court/widgets/Passwordinput.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:court/Services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:court/main_layout.dart';
+import 'package:court/widgets/BackgroundImage.dart';
+import 'package:court/widgets/RoundedButton.dart';
+import 'package:court/widgets/TextInputField.dart';
+import 'package:court/widgets/PasswordInput.dart'; // Ensure this is correctly imported
 import '../pallete.dart';
-import '../widgets/BackgroundImage.dart';
-import '../widgets/RoundedButton.dart';
-import '../widgets/TextInputField.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final AuthService _authService = AuthService();
   bool _isLoading = false;
   String _errorMessage = '';
 
@@ -26,26 +26,27 @@ class _LoginScreenState extends State<LoginScreen> {
       _errorMessage = '';
     });
 
-    try {
-      final UserCredential userCredential =
-          await _auth.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
+    final userCredential = await _authService.signInWithEmailAndPassword(
+      _emailController.text,
+      _passwordController.text,
+    );
 
-      if (userCredential.user != null) {
-        Navigator.pushReplacementNamed(
-            context, '/home'); // Replace with your home screen route name
-      }
-    } on FirebaseAuthException catch (e) {
+    if (userCredential?.user != null) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                const MainLayout()), // Ensure MainLayout is the correct import for your navigation target
+      );
+    } else {
       setState(() {
-        _errorMessage = e.message ?? 'Login failed. Please try again.';
-      });
-    } finally {
-      setState(() {
-        _isLoading = false;
+        _errorMessage = 'Login failed. Please try again.';
       });
     }
+
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -53,7 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Stack(
       children: [
         const BackgroundImage(
-          image: 'assets/images/Background.jpeg',
+          image:
+              'assets/images/Background.jpeg', // Ensure the image path is correct
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
@@ -62,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const Flexible(
                 child: Center(
                   child: Text(
-                    'COURTIFY',
+                    'Courtify', // Replace with your app name
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 60,
@@ -84,44 +86,45 @@ class _LoginScreenState extends State<LoginScreen> {
                     icon: FontAwesomeIcons.lock,
                     hint: 'Password',
                     inputAction: TextInputAction.done,
-                    inputType:
-                        TextInputType.visiblePassword, // Corrected inputType
-                    controller: _passwordController, // Added controller
+                    controller: _passwordController,
+                    inputType: TextInputType.visiblePassword,
                   ),
                   GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, 'ForgotPassword'),
+                    onTap: () => Navigator.pushNamed(context,
+                        'ForgotPassword'), // Ensure this navigates correctly
                     child: const Text(
-                      'Forgot Password',
+                      'Forgot Password?',
                       style: kBodyText,
                     ),
                   ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  RoundedButton(
-                    buttonName: 'Login',
-                    onPressed: _login, // Corrected function reference
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
+                  const SizedBox(height: 25),
+                  _isLoading
+                      ? CircularProgressIndicator()
+                      : GestureDetector(
+                          onTap: _login,
+                          child: const RoundedButton(buttonName: 'Login'),
+                        ),
+                  const SizedBox(height: 25),
                 ],
               ),
               GestureDetector(
-                onTap: () => Navigator.pushNamed(context, 'CreateNewAccount'),
+                onTap: () => Navigator.pushNamed(context,
+                    '/createNewAccount'), // Ensure this navigates correctly
                 child: Container(
                   decoration: const BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(width: 1, color: Colors.white))),
+                    border: Border(
+                        bottom: BorderSide(width: 1, color: Colors.white)),
+                  ),
                   child: const Text(
                     'Create New Account',
                     style: kBodyText,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
+              // Display error message if login failed
+              Text(_errorMessage,
+                  style: TextStyle(color: Colors.red, fontSize: 14)),
             ],
           ),
         )

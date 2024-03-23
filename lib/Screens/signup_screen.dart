@@ -1,14 +1,15 @@
-import 'dart:ui';
-
-import 'package:court/pallete.dart';
-import 'package:court/widgets/BackgroundImage.dart';
-import 'package:court/widgets/Passwordinput.dart';
-import 'package:court/widgets/RoundedButton.dart';
-import 'package:court/widgets/TextInputField.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:court/Services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'dart:ui';
+
+// Adjust the import paths as needed
+import 'package:court/main_layout.dart';
+import 'package:court/pallete.dart';
+import 'package:court/widgets/BackgroundImage.dart';
+import 'package:court/widgets/PasswordInput.dart';
+import 'package:court/widgets/RoundedButton.dart';
+import 'package:court/widgets/TextInputField.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -24,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  final AuthService _authService = AuthService();
   bool _isLoading = false;
   String _errorMessage = '';
 
@@ -39,43 +41,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   Future<void> _signUp() async {
+    if (_passwordController.text != _confirmPasswordController.text) {
+      setState(() => _errorMessage = 'Passwords do not match.');
+      return;
+    }
+
     setState(() {
       _isLoading = true;
       _errorMessage = '';
     });
 
-    if (_passwordController.text == _confirmPasswordController.text) {
-      try {
-        UserCredential userCredential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim(),
-        );
+    final userCredential = await _authService.signUpWithEmailAndPassword(
+      email: _emailController.text,
+      password: _passwordController.text,
+      firstName: _firstNameController.text,
+      lastName: _lastNameController.text,
+      age: _ageController.text,
+    );
 
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(userCredential.user!.uid)
-            .set({
-          'firstName': _firstNameController.text.trim(),
-          'lastName': _lastNameController.text.trim(),
-          'age': _ageController.text.trim(),
-        });
-
-        // TODO: Navigate to the next screen or handle the sign up process
-      } on FirebaseAuthException catch (e) {
-        setState(() {
-          _errorMessage = e.message ?? 'An error occurred during sign up.';
-        });
-      }
+    if (userCredential?.user != null) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MainLayout()),
+      );
     } else {
-      setState(() {
-        _errorMessage = 'Passwords do not match.';
-      });
+      setState(() => _errorMessage = 'An error occurred during sign up.');
     }
 
-    setState(() {
-      _isLoading = false;
-    });
+    setState(() => _isLoading = false);
   }
 
   @override
@@ -158,7 +151,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SizedBox(height: 25),
                     GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, 'Login'),
+                      onTap: () => Navigator.pushNamed(context, 'mainLayout'),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
