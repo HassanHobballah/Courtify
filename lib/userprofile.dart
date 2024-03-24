@@ -3,6 +3,7 @@ import 'package:court/Services/user_service.dart';
 import 'package:court/config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:court/home_page.dart';//
 
 class UserProfilePage extends StatefulWidget {
   final Map<String, dynamic> userData;
@@ -109,15 +110,19 @@ class _UserProfilePageState extends State<UserProfilePage> {
             ListTile(
               title: const Text('Profile'),
               onTap: () {
-                // TODO: Navigate to profile update page if necessary
+                 Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => UserProfilePage(userData: widget.userData)),
+           );
               },
-            ),
+            ),//
             ListTile(
               title: const Text('Book'),
               onTap: () {
-                // TODO: Navigate to booking page
+                 Navigator.of(context).push(
+                 MaterialPageRoute(builder: (context) => const HomePage()),
+                );
               },
-            ),
+            ),//
             Divider(),
             ListTile(
               title: const Text('Log Out'),
